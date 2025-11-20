@@ -53,8 +53,9 @@
 <body>
 
 <header>
-    <div class="logo">PRAY FOR MERCY</div>
+    
     <nav>
+        <div class="logo">PRAY FOR MERCY</div>
         <a href="index.html">Início</a>
         <a href="catalog.html">Catálogo</a>
         <a href="login.html">Login</a>
