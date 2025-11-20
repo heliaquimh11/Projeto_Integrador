@@ -8,7 +8,7 @@ private PDO $pdo;
    public function insert($numero,$validade,$cvv){
     $sql = "INSERT INTO cartao(numero,validade,cvv) values(?,?,?)";
     $stmt = $this->pdo->prepare($sql);
-    return $stmt->execute([$numero,$validade,$cvv])
+    return $stmt->execute([$numero,$validade,$cvv]);
 }
 }
 ?>
