@@ -1,32 +1,37 @@
+<?php 
+require_once __DIR__ . '/../core/sessao.php'; 
+
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Criar Conta</title>
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .login-box {
+        .signup-box {
             width: 350px;
-            margin: 140px auto;
+            margin: 100px auto;
             padding: 30px;
             border: 1px solid #ddd;
         }
 
-        .login-box h2 {
+        .signup-box h2 {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .login-box input {
+        .signup-box input {
             width: 100%;
             padding: 12px;
             margin-top: 12px;
             border: 1px solid #aaa;
         }
 
-        .login-box button {
+        .signup-box button {
             margin-top: 20px;
             width: 100%;
             padding: 12px;
@@ -36,11 +41,11 @@
             cursor: pointer;
         }
 
-        .login-box button:hover {
+        .signup-box button:hover {
             background: #333;
         }
 
-        .login-box p {
+        .signup-box p {
             margin-top: 15px;
             text-align: center;
         }
@@ -49,30 +54,30 @@
 <body>
 
 <header>
-    <div class="logo">PRAY FOR MERCY</div>
+    
     <nav>
+        <div class="logo">PRAY FOR MERCY</div>
         <a href="index.html">Início</a>
         <a href="catalog.html">Catálogo</a>
         <a href="login.html">Login</a>
 
         <a href="carrinho.html" class="cart-icon">
-            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Carrinho">
+            <img src="" alt="Carrinho">
             <span id="cart-count">0</span>
         </a>
     </nav>
 </header>
 
-<div class="login-box">
-    <h2>Entrar</h2>
-
+<div class="signup-box">
+    <h2>Criar Conta</h2>
+        
+    <input type="text" placeholder="Nome completo">
     <input type="email" placeholder="E-mail">
     <input type="password" placeholder="Senha">
+    <input type="password" placeholder="Confirmar senha">
+    <button>Criar Conta</button>
 
-    <button>Entrar</button>
-
-    <p>
-        Não tem conta? <a href="criar-conta.html">Criar Conta</a>
-    </p>
+    <p>Já tem conta? <a href="login.html">Entrar</a></p>
 </div>
 
 <footer>

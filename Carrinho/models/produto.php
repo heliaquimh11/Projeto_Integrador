@@ -1,4 +1,5 @@
 <?php 
+require_once __DIR__ . '/../core/conexao.php';
 $acessabanco = new Produto($pdo);
 class Produto {
     private $pdo;

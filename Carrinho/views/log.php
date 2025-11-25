@@ -1,32 +1,36 @@
+<?php 
+require_once __DIR__ . '/../core/sessao.php'; 
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Criar Conta</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
 
     <style>
-        .signup-box {
+        .login-box {
             width: 350px;
-            margin: 100px auto;
+            margin: 140px auto;
             padding: 30px;
             border: 1px solid #ddd;
         }
 
-        .signup-box h2 {
+        .login-box h2 {
             text-align: center;
             margin-bottom: 25px;
         }
 
-        .signup-box input {
+        .login-box input {
             width: 100%;
             padding: 12px;
             margin-top: 12px;
             border: 1px solid #aaa;
         }
 
-        .signup-box button {
+        .login-box button {
             margin-top: 20px;
             width: 100%;
             padding: 12px;
@@ -36,11 +40,11 @@
             cursor: pointer;
         }
 
-        .signup-box button:hover {
+        .login-box button:hover {
             background: #333;
         }
 
-        .signup-box p {
+        .login-box p {
             margin-top: 15px;
             text-align: center;
         }
@@ -56,23 +60,23 @@
         <a href="login.html">Login</a>
 
         <a href="carrinho.html" class="cart-icon">
-            <img src="" alt="Carrinho">
+            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Carrinho">
             <span id="cart-count">0</span>
         </a>
     </nav>
 </header>
 
-<div class="signup-box">
-    <h2>Criar Conta</h2>
+<div class="login-box">
+    <h2>Entrar</h2>
 
-    <input type="text" placeholder="Nome completo">
     <input type="email" placeholder="E-mail">
     <input type="password" placeholder="Senha">
-    <input type="password" placeholder="Confirmar senha">
 
-    <button>Criar Conta</button>
+    <button>Entrar</button>
 
-    <p>Já tem conta? <a href="login.html">Entrar</a></p>
+    <p>
+        Não tem conta? <a href="criar-conta.html">Criar Conta</a>
+    </p>
 </div>
 
 <footer>

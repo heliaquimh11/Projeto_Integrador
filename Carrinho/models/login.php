@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../core/conexao.php';
 class login{
 
     private PDO $pdo;

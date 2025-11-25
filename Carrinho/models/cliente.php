@@ -1,4 +1,5 @@
 <?php 
+require_once __DIR__ . '/../core/conexao.php';
 class Ccrud{
 private $pdo;
 public function __construct($pdo){
