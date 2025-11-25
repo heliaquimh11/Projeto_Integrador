@@ -49,7 +49,7 @@ $total = 79.90; // ex preco
 <body>
 
 <header>
-    <div class="logo">PRAY FOR MERCY</div>
+    <div class="logo text-white">PRAY FOR MERCY</div>
     <nav>
         <a href="index.php">Início</a>
         <a href="catalogo.php">Catálogo</a>
@@ -62,49 +62,21 @@ $total = 79.90; // ex preco
 
 <div class="checkout-box">
 
-    <h2>Finalizar Compra</h2>
 
-    <?php if (!empty($mensagem)): ?>
-        <p><strong><?= $mensagem ?></strong></p>
-        <hr>
-    <?php endif; ?>
+    <h2>Cadaste Seu Cartão</h2>
 
-    <p><strong>Produto:</strong> Camiseta Essencial</p>
-   <p><strong>Total:</strong> R$ <?= number_format($total, 2, ',', '.'); ?></p>
-
-
-    <form action="finalizar.php" method="post">
-        <h3 style="margin-top:20px;">Dados do Cliente</h3>
-
-        <label>Nome Completo:</label>
-        <input type="text" name="nome" placeholder="Nome Completo" required>
-
-        <label>Endereço:</label>
-        <input type="text" name="endereco" placeholder="Endereço" required>
-
-        <label>CEP:</label>
-        <input type="text" name="cep" placeholder="CEP" required>
-
-        <label>Número:</label>
-        <input type="text" name="numero" placeholder="Número" required>
-
-        <button type="submit">Salvar Dados</button>
-    </form>
-
-    <hr>
-
-    <h3>Pagamento</h3>
-
-    <form action="pagamento.php" method="post">
+    <form action="..//models/cadastro_cartão.php" method="post">
         <input type="text" placeholder="Número do Cartão">
         <input type="text" placeholder="Validade">
         <input type="text" placeholder="CVV">
     </form>
 
     <a href="../models/finalizarCompra.php">
-        <button>Confirmar Compra</button>
-    </a>
+        <button>Cadastrar</button>
+    </a> <br>
+    <p><a href="#">Pular etapa</a></p>
 
+    <p>*cartao oculto</p>
 </div>
 
 

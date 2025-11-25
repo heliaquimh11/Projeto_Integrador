@@ -1,6 +1,6 @@
 <?php  
 require_once __DIR__ . '/../core/conexao.php';
-class cartão
+class cadastrar_cartao
 {
 private PDO $pdo;
    public function __construct(PDO $pdo){

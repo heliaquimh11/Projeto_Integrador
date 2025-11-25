@@ -1,80 +1,136 @@
-/* -------------------------------
-   SISTEMA DE CARRINHO
---------------------------------*/
-let carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+// ===============================
+// CARRINHO
+// ===============================
+let carrinho = [];
 
-// Adiciona produto ao carrinho
-function addCarrinho(nome, preco, img) {
-    carrinho.push({ nome, preco, img });
+// Carregar carrinho salvo no LocalStorage (opcional)
+if (localStorage.getItem("carrinho")) {
+    carrinho = JSON.parse(localStorage.getItem("carrinho"));
+    renderizarCarrinho();
+}
+
+// ===============================
+// ADICIONAR AO CARRINHO
+// ===============================
+function adicionarCarrinho(nome, preco, img) {
+    preco = Number(preco);
+
+    // Verifica se já existe
+    let item = carrinho.find(p => p.nome === nome);
+
+    if (item) {
+        item.quantidade++;
+    } else {
+        carrinho.push({
+            nome: nome,
+            preco: preco,
+            img: img,
+            quantidade: 1
+        });
+    }
+
+    salvarCarrinho();
+    renderizarCarrinho();
+}
+
+// ===============================
+// SALVAR LOCALMENTE
+// ===============================
+function salvarCarrinho() {
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    atualizarContador();
-    alert("Produto adicionado ao carrinho!");
 }
 
-// Atualiza contador no ícone
-function atualizarContador() {
-    const contador = document.getElementById("cart-count");
-    if (contador) {
-        contador.innerText = carrinho.length;
-    }
+// ===============================
+// REMOVER ITEM
+// ===============================
+function removerItem(index) {
+    carrinho.splice(index, 1);
+    salvarCarrinho();
+    renderizarCarrinho();
 }
 
-// Carrega itens na página carrinho.html
-function carregarCarrinho() {
-    const container = document.getElementById("carrinho-container");
+// ===============================
+// ATUALIZAR QUANTIDADE
+// ===============================
+function alterarQuantidade(index, qtd) {
+    qtd = Number(qtd);
+    if (qtd <= 0) qtd = 1;
 
-    if (!container) return;
+    carrinho[index].quantidade = qtd;
+    salvarCarrinho();
+    renderizarCarrinho();
+}
 
-    if (carrinho.length === 0) {
-        container.innerHTML = "<p>Seu carrinho está vazio.</p>";
-        return;
-    }
+// ===============================
+// RENDERIZAR NA TELA
+// ===============================
+function renderizarCarrinho() {
+    let container = document.getElementById("listaCarrinho");
+    let totalElement = document.getElementById("totalCarrinho");
+
+    container.innerHTML = "";
+    let total = 0;
 
     carrinho.forEach((item, index) => {
+        let subtotal = item.preco * item.quantidade;
+        total += subtotal;
+
         container.innerHTML += `
-            <div class="cart-item fade">
-                <img src="${item.img}">
-                <div>
-                    <h3>${item.nome}</h3>
-                    <p>Preço: R$ ${item.preco}</p>
-                    <button onclick="removerItem(${index})">Remover</button>
-                </div>
+            <div class="item-carrinho">
+                <img src="${item.img}" width="80">
+                <p><strong>${item.nome}</strong></p>
+                <p>Preço: R$ ${item.preco.toFixed(2)}</p>
+
+                <label>Qtd:</label>
+                <input type="number" min="1" value="${item.quantidade}" onchange="alterarQuantidade(${index}, this.value)">
+
+                <p>Subtotal: R$ ${subtotal.toFixed(2)}</p>
+
+                <button onclick="removerItem(${index})">Remover</button>
+                <hr>
             </div>
         `;
     });
+
+    totalElement.innerHTML = "Total: R$ " + total.toFixed(2);
 }
 
-// Remove item
-function removerItem(i) {
-    carrinho.splice(i, 1);
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-    atualizarContador();
-    location.reload();
-}
+// ===============================
+// FINALIZAR COMPRA
+// ===============================
+async function finalizarCompra() {
 
-/* -------------------------------
-   BUSCA (CATALOGO)
---------------------------------*/
-function buscarProduto() {
-    let filtro = document.getElementById("search").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
+    if (carrinho.length === 0) {
+        alert("Seu carrinho está vazio.");
+        return;
+    }
 
-    cards.forEach(card => {
-        let nome = card.querySelector("h3").innerText.toLowerCase();
+    try {
+        let resposta = await fetch("finalizar.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(carrinho)
+        });
 
-        if (nome.includes(filtro)) {
-            card.style.display = "block";
-            card.classList.add("fade");
-        } else {
-            card.style.display = "none";
+        let resultado = await resposta.json();
+
+        // Exibir retorno
+        alert(resultado.message);
+
+        if (resultado.success) {
+            // limpar carrinho visual e localStorage
+            carrinho = [];
+            salvarCarrinho();
+            renderizarCarrinho();
+
+            // Redirecionar para página de sucesso (opcional)
+            window.location.href = "sucesso.php?id=" + resultado.compra_id;
         }
-    });
-}
 
-/* -------------------------------
-   ANIMAÇÕES
---------------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-    document.body.classList.add("fade-in");
-    atualizarContador();
-});
+    } catch (erro) {
+        console.error("Erro ao finalizar compra:", erro);
+        alert("Ocorreu um erro ao enviar a compra.");
+    }
+}

@@ -1,6 +1,6 @@
 <?php 
 require_once __DIR__ . '/../core/conexao.php';
-class enderco{
+class cadastrar_enderco{
 private PDO $pdo;
 public function __construct(PDO $pdo)
 {
