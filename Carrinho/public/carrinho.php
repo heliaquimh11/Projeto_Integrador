@@ -1,39 +1,60 @@
-<?php 
-class Cart {
+<?php
+class Carrinho {
 
-    public function comprar(Produto $produto) {
-        $noCarrinho = false;
-        $this->setTotal($produto);
+    public function __construct() {
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
 
-        if (count($this->getCart()) > 0) {
-            foreach ($this->getCart() as $produtonocarrinho) {
-                if ($produtonocarrinho->getId() === $produto->getId()) {
-                    $quantidade = $produtonocarrinho->getQuantidade() + $produto->getQuantidade();
-                    $produtonocarrinho->setQuantidade($quantidade);
-                    $noCarrinho = true;
-                    break;
-                }
-            }
+        if (!isset($_SESSION['carrinho'])) {
+            $_SESSION['carrinho'] = [];
+        }
+    }
 
-            if (!$noCarrinho) {
-                $this->setGravarCarrinho($produto);
+    // Adicionar produto
+    public function adicionar(array $produto) {
+        $id = $produto['id'];
+
+        if (!isset($_SESSION['carrinho'][$id])) {
+            // Primeira vez
+            $produto['quantidade'] = 1;
+            $_SESSION['carrinho'][$id] = $produto;
+        } else {
+            // Já está no carrinho → aumenta
+            $_SESSION['carrinho'][$id]['quantidade']++;
+        }
+    }
+
+    // Remover 1 unidade
+    public function remover($id) {
+        if (isset($_SESSION['carrinho'][$id])) {
+            $_SESSION['carrinho'][$id]['quantidade']--;
+
+            if ($_SESSION['carrinho'][$id]['quantidade'] <= 0) {
+                unset($_SESSION['carrinho'][$id]);
             }
         }
     }
 
-    private function setGravarCarrinho(Produto $produto) {
-        $_SESSION['cart']['produtos'][]= $produto;
-    }
-    private function setTotal(produto $produto){
-       $_SESSION['cart']['total'] += $produto->getPreco()* $produto->getQuantidade();
+    // Total SEM desconto
+    public function getTotal() {
+        $total = 0;
+
+        foreach ($_SESSION['carrinho'] as $item) {
+            $total += $item['preco'] * $item['quantidade'];
+        }
+
+        return $total;
     }
 
-    public function remover() {
-    
+    // Total COM desconto
+    public function getTotalComDesconto($valor, $tipo) {
+        $desconto = new Desconto();
+        return $desconto->calcularDesconto($this->getTotal(), $valor, $tipo);
     }
 
-    public function getCart() {
-        return $_SESSION['cart']['produtos']?? [];
+    public function getItens() {
+        return $_SESSION['carrinho'];
     }
 }
 ?>

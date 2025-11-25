@@ -1,8 +1,23 @@
 <?php
 require 'conexao.php';
 require 'cliente.php';
+require 'cadastro_cartão.php';
 
 $mensagem = "";
+
+if($_SERVER["REQUEST_METHOD"] === "POST"){
+    $numero   = $_POST['numero'] ?? '';
+    $validade = $_POST['validade'] ?? '';
+    $cvv      = $_POST['cvv'] ?? '';
+
+    $cartão = new cartão($pdo);
+
+    if($cartão->insert($numero,$validade,$cvv)){
+        $mensagem = "Dados do cartão inseridos com sucesso!";
+    } else {
+        $mensagem = "Erro ao inserir dados do cartão.";
+    }
+}
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -11,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $cep      = $_POST['cep'] ?? '';
     $numero   = $_POST['numero'] ?? '';
 
-    $crud = new ($pdo);
+    $crud = new Ccrud ($pdo);
 
     if ($crud->inserir($nome, $endereco, $cep, $numero)) {
         $mensagem = "Dados do cliente inseridos com sucesso!";

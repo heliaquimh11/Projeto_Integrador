@@ -69,12 +69,11 @@
 
 <div class="signup-box">
     <h2>Criar Conta</h2>
-
+        
     <input type="text" placeholder="Nome completo">
     <input type="email" placeholder="E-mail">
     <input type="password" placeholder="Senha">
     <input type="password" placeholder="Confirmar senha">
-
     <button>Criar Conta</button>
 
     <p>Já tem conta? <a href="login.html">Entrar</a></p>

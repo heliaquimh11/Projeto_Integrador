@@ -9,7 +9,7 @@ class cadastrar{
     }
 
     public function inserir($nome, $email, $senha) {
-        $sql = "INSERT INTO clientes(nome, email,senha) VALUES (?, ?, ?, ?)";
+        $sql = "INSERT INTO cliente(nome, email,senha) VALUES (?, ?, ?, ?)";
         $stmt = $this->pdo->prepare($sql);
 
         return $stmt->execute([$nome, $email, $senha]);
