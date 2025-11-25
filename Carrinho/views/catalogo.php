@@ -15,7 +15,7 @@
     <nav>
         <a href="index.html">Início</a>
         <a href="catalogo.php">Catálogo</a>
-        <a href="cadastro.php">Login</a>
+        <a href="log.php">Login</a>
 
         <a href="carrinho.php" class="cart-icon">
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Carrinho">

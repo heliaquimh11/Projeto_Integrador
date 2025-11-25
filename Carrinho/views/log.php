@@ -8,7 +8,7 @@ require_once __DIR__ . '/../core/sessao.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../public/style.css">
 
     <style>
         .login-box {
@@ -55,11 +55,11 @@ require_once __DIR__ . '/../core/sessao.php';
 <header>
     <div class="logo">PRAY FOR MERCY</div>
     <nav>
-        <a href="index.html">Início</a>
-        <a href="catalog.html">Catálogo</a>
-        <a href="login.html">Login</a>
+        <a href="index.php">Início</a>
+        <a href="catalogo.php">Catálogo</a>
+        <a href="log.php">Login</a>
 
-        <a href="carrinho.html" class="cart-icon">
+        <a href="carrinho.php" class="cart-icon">
             <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Carrinho">
             <span id="cart-count">0</span>
         </a>
@@ -69,13 +69,17 @@ require_once __DIR__ . '/../core/sessao.php';
 <div class="login-box">
     <h2>Entrar</h2>
    <!-- login.php -->
+    <form action="login.php" method="post">
+    <label for="email">Email</label>
     <input type="email" placeholder="E-mail">
+    <label for="email">Senha</label>
     <input type="password" placeholder="Senha">
+    </form>
 
     <button>Entrar</button>
 
     <p>
-        Não tem conta? <a href="criar-conta.html">Criar Conta</a>
+        Não tem conta? <a href="part1.php">Criar Conta</a>
     </p>
 </div>
 
