@@ -1,5 +1,5 @@
 <?php  
-require_once __DIR__ . '/../core/conexao.php';
+require_once  '../core/conexao.php';
 class cadastrar_cartao
 {
 private PDO $pdo;

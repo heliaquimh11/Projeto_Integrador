@@ -1,5 +1,5 @@
 <?php 
-require_once __DIR__ . '/../core/sessao.php'; 
+session_start();
 
 ?>
 <!DOCTYPE html>
@@ -67,16 +67,23 @@ require_once __DIR__ . '/../core/sessao.php';
 </header>
 
 <div class="login-box">
+    <?php 
+    if (isset($_SESSION['erro_login'])) {
+    echo "<p style='color:red'>" . $_SESSION['erro_login'] . "</p>";
+    unset($_SESSION['erro_login']);
+}
+    ?>
     <h2>Entrar</h2>
    <!-- login.php -->
-    <form action="login.php" method="post">
+    <form action="../app/cadastro.php" method="post">
     <label for="email">Email</label>
-    <input type="email" placeholder="E-mail">
-    <label for="email">Senha</label>
-    <input type="password" placeholder="Senha">
-    </form>
+    <input type="email" name="email" placeholder="E-mail">
 
-    <button>Entrar</button>
+    <label for="senha">Senha</label>
+    <input type="password" name="senha" placeholder="Senha">
+
+    <button type="submit">Entrar</button>
+</form>
 
     <p>
         Não tem conta? <a href="part1.php">Criar Conta</a>

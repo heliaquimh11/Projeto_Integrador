@@ -1,5 +1,3 @@
-<?php require_once __DIR__ . '/../core/sessao.php'; ?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

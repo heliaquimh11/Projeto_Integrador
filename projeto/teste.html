@@ -1,0 +1,63 @@
+<!-- Swiper CSS -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
+
+<section class="container py-5 text-center">
+  <h2 class="mb-4">O que nossos clientes dizem</h2>
+
+  <!-- Swiper -->
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><img src="" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+      <div class="swiper-slide"><img src="" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+      <div class="swiper-slide"><img src="" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+      <div class="swiper-slide"><img src="" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+      <div class="swiper-slide"><img src="" class="img-fluid rounded-4 shadow-sm" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- CSS -->
+<style>
+  .swiper {
+    width: 20%;
+    height: 500px; /* precisa ter altura definida! */
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+  }
+
+  .swiper-slide img {
+    width: 90%;
+    height: auto;
+    border-radius: 10px;
+  }
+</style>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+  const swiper = new Swiper(".mySwiper", {
+    direction: "vertical", // 🔹 torna vertical
+    loop: true,
+    slidesPerView: 3,
+    spaceBetween: 30,
+    autoplay: {
+      delay: 0,
+      disableOnInteraction: false,
+    },
+    speed: 3000,
+    freeMode: true,
+    breakpoints: {
+      0: { slidesPerView: 1 },
+      576: { slidesPerView: 2 },
+      992: { slidesPerView: 3 },
+    },
+  });
+</script>
