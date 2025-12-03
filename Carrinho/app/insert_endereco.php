@@ -1,7 +1,6 @@
 <?php 
-require_once '../core/conexao.php';
 session_start();
-
+require_once '../core/conexao.php';
 // Pega o ID que agora estará salvo (ex: 19)
 $id_cliente_sessao = $_SESSION['id_cliente'] ?? null; 
 
@@ -24,13 +23,13 @@ class cadastrar_enderco{
         
         if (empty($id_cliente)) {
             $_SESSION['erro'] = "Sessão expirada. Recomece o cadastro.";
-            header("Location: ../views/part1.php?step=1");
+            header("Location: ../views/criar-conta.php");
             exit;
         }
 
         if (empty($endereco) || empty($numero) || empty($cep) || empty($cidade) || empty($estado)) {
             $_SESSION['erro'] = "Preencha todos os campos obrigatórios.";
-            header("Location: ../views/part1.php?step=2");
+            header("Location: ../views/criar-conta.php");
             exit;
         }
 
@@ -42,17 +41,17 @@ class cadastrar_enderco{
 
             if($stmt->execute([$id_cliente, $endereco, $numero, $complemento, $cidade, $estado, $cep])){
                 $_SESSION['sucesso'] = "Endereço salvo!";
-                header("Location: ../views/part1.php?step=3"); 
+                header("Location: ../views/log.php"); 
                 exit; 
             } else {
                 $_SESSION['erro'] = "Erro ao salvar endereço.";
-                header("Location: ../views/part1.php?step=2");
+                header("Location: ../views/criar-conta.php");
                 exit;
             }
         }
         catch (PDOException $e){
             $_SESSION['erro'] = "Erro PDO: " . $e->getMessage(); 
-            header("Location: ../views/part1.php?step=2");
+            header("Location: ../views/criar-conta.php");
             exit;
         }
     }

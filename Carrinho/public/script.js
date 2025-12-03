@@ -1,136 +1,157 @@
-// ===============================
-// CARRINHO
-// ===============================
-let carrinho = [];
+/* ===================== script.js ===================== */
+/* contém: bancoProdutos, abrirProduto (via event listeners), inicialização produto */
+/* NÃO declara consts duplicadas no escopo global; usa window.* apenas quando necessário */
 
-// Carregar carrinho salvo no LocalStorage (opcional)
-if (localStorage.getItem("carrinho")) {
-    carrinho = JSON.parse(localStorage.getItem("carrinho"));
-    renderizarCarrinho();
+window.LS_PRODUTOS = window.LS_PRODUTOS || "produtos";
+window.LS_PRODUTO_SELECIONADO = window.LS_PRODUTO_SELECIONADO || "produtoSelecionado";
+
+/* banco de produtos (exemplo) */
+window.bancoProdutos = {
+  jersey: {
+    id: "jersey",
+    nome: "Jersey Barça - Unissex",
+    preco: "R$ 129.90",
+    frente: "../public/img/jersey- frente.webp" // opcional
+  },
+  hoodie: {
+    id: "hoodie",
+    nome: "Camiseta Bag - Unissex",
+    preco: "R$ 109.90",
+    frente: "../public/img/hoodie-frente.webp"
+  },
+  calca: {
+    id: "calca",
+    nome: "Calça Baggy TakeOff - Unissex",
+    preco: "R$ 199.90",
+    frente: "../public/img/calca-frente.webp"
+  }
+};
+
+/* função para abrir produto (usada internamente) */
+function abrirProdutoId(id) {
+  if (!id) {
+    console.error("abrirProdutoId: id inválido", id);
+    return;
+  }
+  localStorage.setItem(window.LS_PRODUTO_SELECIONADO, id);
+  // caminho relativo: assume produto.php na mesma pasta de catalogo.php
+  window.location.href = "produto.php";
 }
 
-// ===============================
-// ADICIONAR AO CARRINHO
-// ===============================
-function adicionarCarrinho(nome, preco, img) {
-    preco = Number(preco);
+/* expor por compatibilidade (se ainda tiver onclick inline em algum lugar) */
+window.abrirProduto = abrirProdutoId;
 
-    // Verifica se já existe
-    let item = carrinho.find(p => p.nome === nome);
+/* inicializa listeners no catálogo e na página de produto */
+function inicializarCatalogo() {
+  // buttons com data-id
+  document.querySelectorAll(".btn-ver-prod").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const id = btn.dataset.id;
+      abrirProdutoId(id);
+    });
+  });
+}
 
-    if (item) {
-        item.quantidade++;
-    } else {
-        carrinho.push({
-            nome: nome,
-            preco: preco,
-            img: img,
-            quantidade: 1
-        });
+function inicializarPaginaProduto() {
+  const nomeEl = document.getElementById("prod-nome");
+  if (!nomeEl) return; // não é a página produto
+
+  const id = localStorage.getItem(window.LS_PRODUTO_SELECIONADO);
+  if (!id || !window.bancoProdutos[id]) {
+    console.warn("Produto não encontrado, voltando ao catálogo.");
+    window.location.href = "catalogo.php";
+    return;
+  }
+
+  const p = window.bancoProdutos[id];
+  nomeEl.innerText = p.nome || "";
+  const precoEl = document.getElementById("prod-preco");
+  if (precoEl) precoEl.innerText = p.preco || "";
+
+  // imagens (se houver)
+  const img1 = document.getElementById("img1");
+  const img2 = document.getElementById("img2");
+  if (img1 && p.frente) img1.src = p.frente;
+  if (img2 && p.verso) img2.src = p.verso || p.frente || "";
+
+  // botão adicionar ao carrinho (usa addCarrinho do carrinho.js)
+  const botao = document.querySelector(".btn-cart");
+  const selectTamanho = document.querySelector(".tamanho-select");
+  if (botao) {
+    botao.addEventListener("click", () => {
+      const tamanho = selectTamanho ? selectTamanho.value : '';
+      if (!tamanho || tamanho.toLowerCase() === "selecione") {
+        alert("Escolha um tamanho antes de adicionar ao carrinho!");
+        return;
+      }
+      const precoRaw = (p.preco || "").replace(/[^\d,.-]/g, "").replace(",", ".");
+      const preco = parseFloat(precoRaw) || 0;
+      if (typeof window.addCarrinho === "function") {
+        window.addCarrinho(p.nome, preco, p.frente || "", { tamanho, id: p.id });
+      } else {
+        console.error("addCarrinho não encontrada. Verifique carrinho.js");
+      }
+    });
+  }
+}
+
+/* DOMContentLoaded: inicializa catálogo e produto conforme a página */
+document.addEventListener("DOMContentLoaded", () => {
+  // atualiza contador (se carrinho.js já estiver carregado)
+  if (typeof window.atualizarContador === "function") {
+    window.atualizarContador();
+  }
+
+  inicializarCatalogo();
+  inicializarPaginaProduto();
+});
+/* ================== FUNÇÕES PARA O CARRINHO NO HTML ================== */
+
+function carregarCarrinho() {
+    const carrinho = obterCarrinho();
+    const container = document.getElementById("carrinho-container");
+
+    if (!container) return;
+
+    if (carrinho.length === 0) {
+        container.innerHTML = "<p style='color:white;'>Seu carrinho está vazio.</p>";
+        return;
     }
 
-    salvarCarrinho();
-    renderizarCarrinho();
-}
+    let html = "";
 
-// ===============================
-// SALVAR LOCALMENTE
-// ===============================
-function salvarCarrinho() {
-    localStorage.setItem("carrinho", JSON.stringify(carrinho));
-}
-
-// ===============================
-// REMOVER ITEM
-// ===============================
-function removerItem(index) {
-    carrinho.splice(index, 1);
-    salvarCarrinho();
-    renderizarCarrinho();
-}
-
-// ===============================
-// ATUALIZAR QUANTIDADE
-// ===============================
-function alterarQuantidade(index, qtd) {
-    qtd = Number(qtd);
-    if (qtd <= 0) qtd = 1;
-
-    carrinho[index].quantidade = qtd;
-    salvarCarrinho();
-    renderizarCarrinho();
-}
-
-// ===============================
-// RENDERIZAR NA TELA
-// ===============================
-function renderizarCarrinho() {
-    let container = document.getElementById("listaCarrinho");
-    let totalElement = document.getElementById("totalCarrinho");
-
-    container.innerHTML = "";
-    let total = 0;
-
-    carrinho.forEach((item, index) => {
-        let subtotal = item.preco * item.quantidade;
-        total += subtotal;
-
-        container.innerHTML += `
-            <div class="item-carrinho">
-                <img src="${item.img}" width="80">
-                <p><strong>${item.nome}</strong></p>
-                <p>Preço: R$ ${item.preco.toFixed(2)}</p>
-
-                <label>Qtd:</label>
-                <input type="number" min="1" value="${item.quantidade}" onchange="alterarQuantidade(${index}, this.value)">
-
-                <p>Subtotal: R$ ${subtotal.toFixed(2)}</p>
-
-                <button onclick="removerItem(${index})">Remover</button>
-                <hr>
+    carrinho.forEach(item => {
+        html += `
+            <div style="
+                display:flex;
+                align-items:center;
+                background:#111;
+                padding:10px;
+                border-radius:10px;
+                margin-bottom:10px;
+            ">
+                <img src="${item.img}" style="width:80px; border-radius:8px;">
+                <div style="margin-left:15px; color:white;">
+                    <h3>${item.nome}</h3>
+                    <p>Tamanho: ${item.tamanho || "Único"}</p>
+                    <p>Preço: R$ ${item.preco.toFixed(2)}</p>
+                </div>
             </div>
         `;
     });
 
-    totalElement.innerHTML = "Total: R$ " + total.toFixed(2);
+    container.innerHTML = html;
 }
 
-// ===============================
-// FINALIZAR COMPRA
-// ===============================
-async function finalizarCompra() {
+function calcularResumo() {
+    const carrinho = obterCarrinho();
 
-    if (carrinho.length === 0) {
-        alert("Seu carrinho está vazio.");
-        return;
-    }
+    let subtotal = 0;
+    carrinho.forEach(item => subtotal += item.preco);
 
-    try {
-        let resposta = await fetch("finalizar.php", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(carrinho)
-        });
+    document.getElementById("subtotal").textContent = 
+        "Subtotal: R$ " + subtotal.toFixed(2);
 
-        let resultado = await resposta.json();
-
-        // Exibir retorno
-        alert(resultado.message);
-
-        if (resultado.success) {
-            // limpar carrinho visual e localStorage
-            carrinho = [];
-            salvarCarrinho();
-            renderizarCarrinho();
-
-            // Redirecionar para página de sucesso (opcional)
-            window.location.href = "sucesso.php?id=" + resultado.compra_id;
-        }
-
-    } catch (erro) {
-        console.error("Erro ao finalizar compra:", erro);
-        alert("Ocorreu um erro ao enviar a compra.");
-    }
+    document.getElementById("total").textContent = 
+        "Total: R$ " + subtotal.toFixed(2);
 }

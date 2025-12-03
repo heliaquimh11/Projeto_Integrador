@@ -1,6 +1,7 @@
 <?php 
+ini_set('session.cookie_lifetime', 0);  // cookie expira ao fechar navegador
+ini_set('session.gc_maxlifetime', 1800); // 30 minutos opcional
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -67,28 +68,33 @@ session_start();
 </header>
 
 <div class="login-box">
+
     <?php 
     if (isset($_SESSION['erro_login'])) {
-    echo "<p style='color:red'>" . $_SESSION['erro_login'] . "</p>";
-    unset($_SESSION['erro_login']);
-}
+        echo "<p style='color:red'>" . $_SESSION['erro_login'] . "</p>";
+        unset($_SESSION['erro_login']);
+    }
     ?>
+
     <h2>Entrar</h2>
-   <!-- login.php -->
-    <form action="../app/cadastro.php" method="post">
-    <label for="email">Email</label>
-    <input type="email" name="email" placeholder="E-mail">
 
-    <label for="senha">Senha</label>
-    <input type="password" name="senha" placeholder="Senha">
+    <form action="../app/processa_login.php" method="post">
+        
+        <label>Email</label>
+        <input type="email" name="email" placeholder="E-mail" required>
 
-    <button type="submit">Entrar</button>
-</form>
+        <label>Senha</label>
+        <input type="password" name="senha" placeholder="Senha" required>
+
+        <button type="submit">Entrar</button>
+    </form>
 
     <p>
-        Não tem conta? <a href="part1.php">Criar Conta</a>
+        Não tem conta? <a href="criar-conta.php">Criar Conta</a>
     </p>
 </div>
+
+<script src="../public/script.js"></script>
 
 <footer>
     © 2025 Projeto 

@@ -19,7 +19,7 @@ if (isset($_SESSION['erro_login'])) {
 }
 ?>
 
-<form method="post" action="autentica_banco.php">
+<form method="post" action="../app/process_login.php">
     <label>Usuário:</label>
     <input type="text" name="usuario" required><br><br>
 

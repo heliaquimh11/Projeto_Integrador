@@ -1,4 +1,5 @@
-<?php
+         
+      <?php
 session_start();
 require_once '../core/conexao.php';
 
@@ -17,6 +18,7 @@ $stmt->execute([$id_cliente]);
 $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
 
 // Buscar itens do carrinho (sessão)
+// A estrutura correta é $_SESSION['carrinho'] que contém os produtos
 $carrinho = $_SESSION['carrinho'] ?? [];
 
 // Calcular total
@@ -25,6 +27,7 @@ foreach ($carrinho as $item) {
     // Certificando-se de que estamos lidando com números
     $preco = isset($item['preco']) ? (float)$item['preco'] : 0;
     $qtd = isset($item['qtd']) ? (int)$item['qtd'] : 1; 
+
     $total += $preco * $qtd;
 }
 $_SESSION['total_compra'] = $total;
@@ -112,36 +115,15 @@ $_SESSION['total_compra'] = $total;
         <p><strong>Total:</strong>
             R$ <?= number_format($total, 2, ',', '.'); ?>
         </p>
-
-        <form action="../models/finalizar.php" method="post">
-            <h3 style="margin-top:20px;">Dados do Cliente</h3>
-            <label>Nome Completo:</label>
-            <input type="text" name="nome" value="<?= $cliente['nome'] ?>" required>
-
-            <label>Endereço:</label>
-            <input type="text" name="endereco" value="<?= $cliente['endereco'] ?>" required>
-
-            <label>CEP:</label>
-            <input type="text" name="cep" value="<?= $cliente['cep'] ?>" required>
-
-            <label>Número:</label>
-            <input type="text" name="numero" value="<?= $cliente['numero'] ?>" required>
-
-
-            <button type="submit">Comprar</button>
-        </form>
-
         <hr>
-
         <h3>Pagamento</h3>
-        <!-- Corrigido: inputs SEM NAME quebram o POST -->
         <form action="../app/insert_cartao.php" method="post">
             <input type="text" name="cartao" placeholder="Número do Cartão" required>
             <input type="text" name="validade" placeholder="Validade" required>
             <input type="text" name="cvv" placeholder="CVV" required>
             <button type="submit">Pagar</button>
         </form>
-        
+    </div>
     <footer class="text-center py-4">
         © 2025 Projeto
     </footer>
@@ -152,3 +134,4 @@ $_SESSION['total_compra'] = $total;
 </body>
 
 </html>
+         

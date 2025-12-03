@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 // Se NÃO estiver logado, manda voltar pro login
