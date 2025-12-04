@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tullani Estética</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=DM+Serif+Display:ital@0;0;1&family=Lato:ital,wght@0,100..900;1,100..900&family=Outfit:wght@100..900&family=Poiret+One&family=Zain:ital,wght@0,200..900;1,300..400&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.typekit.net/rmg5xfm.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="modal fade" id="popupInicio" tabindex="-1" aria-labelledby="popupLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content custom-modal-content">
+        <div class="modal-bg-wrapper">
+          <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close" style="background-color: white; opacity: 0.8;"></button>
+            <button type="submit" id="btnpopup" class="w-100 mt-3">
+              Agendar Agora!
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="hero-section">
+    <img src="img/7.jpg" alt="imagem de fundo" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0;">
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="position: relative; z-index: 10;">
+      <div class="container-fluid">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav w-100 d-flex justify-content-around p-2 gap-4 align-items-center">
+            <li class="nav-item">
+              <a class="nav-link active linkfont" href="#promo">Promoções</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active linkfont" href="#massagens">Massagem</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active linkfont" href="#localizacao">Localização</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="btn btn-agendar nav-link active linkfont" id="btnav" style="background-color: white; color: #220440 !important;">
+                Agendar Agora!
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <button class="btn-flutuante" type="submit"  id="btnwhats">
+      <img src="img/icons8-whatsapp-96.png" alt="Whatsapp">
+    </button>
+  </main>
+
+  <br><br>
+
+<!-- SEÇÃO MASSAGENS (Cuidados) -->
+<section class="container-fluid" id="massagens">
+    <div class="row">
+        <h1 class="text-center mb-3 titlefont" style="color: #530d55; font-size: 3rem;">Nossos cuidados</h1>
+        <div class="d-flex align-items-center justify-content-center mt-4">
+
+            <!-- ELEMENTO CARROSSEL 1 (avaliacaoSwiper) -->
+            <div class="swiper avaliacaoSwiper">
+                <div class="swiper-wrapper">
+
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide d-flex justify-content-center">
+                        <!-- Use a classe card-service para altura fixa -->
+                        <div class="card card-service">
+                            <!-- Use a classe card-img-service para altura fixa da imagem -->
+                            <img src="img/barriga.jpg" class="card-img-top card-img-service" alt="Drenagem">
+                            <div class="card-body card-body-service">
+                                <h5 class="card-title titlefont">Drenagem Linfática</h5>
+                                <p class="card-text rocalignt">
+                                    A drenagem linfática é uma massagem suave que estimula o sistema linfático, ajudando a eliminar toxinas, reduzir inchaços e melhorar a circulação.
+                                </p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <!-- Use a classe btn-small-card para botões menores -->
+                                    <button type="button" class="btn-agendar btn-small-card btnregular">Agendar Agora!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide d-flex justify-content-center">
+                        <div class="card card-service">
+                            <img src="img/plocoPromocao.jpg" class="card-img-top card-img-service" alt="Botox">
+                            <div class="card-body card-body-service">
+                                <h5 class="card-title titlefont">Botox</h5>
+                                <p class="card-text rocalignt">
+                                    O botox suaviza rugas e linhas de expressão, proporcionando um rosto mais jovem e natural.
+                                </p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" class="btn-agendar btn-small-card btnregular">Agendar Agora!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide d-flex justify-content-center">
+                        <div class="card card-service">
+                            <img src="img/cu.jpg" class="card-img-top card-img-service" alt="Gluteo">
+                            <div class="card-body card-body-service">
+                                <h5 class="card-title titlefont">Glúteo Max</h5>
+                                <p class="card-text rocalignt">
+                                    O tratamento de glúteo max estimula, firma e modela os glúteos, melhorando o contorno e a aparência da pele.
+                                </p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" class="btn-agendar btn-small-card btnregular">Agendar Agora!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 -->
+                    <div class="swiper-slide d-flex justify-content-center">
+                        <div class="card card-service">
+                            <img src="img/pasld.jpg" class="card-img-top card-img-service" alt="Limpeza de Pele">
+                            <div class="card-body card-body-service">
+                                <h5 class="card-title titlefont">Limpeza de Pele</h5>
+                                <p class="card-text rocalignt">
+                                    A limpeza de pele purifica, renova e hidrata, removendo impurezas e cravos para um rosto mais leve e radiante.
+                                </p>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" class="btn-agendar btn-small-card btnregular">Agendar Agora!</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <br><br><br><br><br>
+
+  <section class="container-fluid" id="promo">
+    <div class="row w-100 align-items-center justify-content-center mx-auto">
+
+      <div class="col-12 col-sm-10 col-md-6 d-flex flex-column align-items-center gap-4 text-center text-md-start">
+        <div class="container-fluid">
+          <div class="d-flex flex-wrap gap-3 align-items-center justify-content-center justify-content-md-start titlePromo">
+            <h1 class="fw-bold titlefont text-white" style="font-size: clamp(2rem, 6vw, 4rem);">
+              Nossas Promos:
+            </h1>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="60" fill="none">
+              <path d="M50 0 C52 15, 60 35, 85 50 C60 65, 52 85, 50 100 C48 85, 40 65, 15 50 C40 35, 48 15, 50 0Z" fill="white" />
+            </svg>
+          </div>
+
+          <p class="text-white btnregular" style="font-size: clamp(1.1rem, 3.5vw, 2rem);">
+            Nossas promoções são feitas a cada mês, não fique de fora, garanta seu <br> Glow up!
+          </p>
+
+          <button type="button" class="btn-mobile-down" id="btnpromo">
+            Agendar Agora!
+          </button>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-10 col-md-6 d-flex justify-content-center mt-4 mt-md-0">
+        <div class="swiper promoSwiper" style="max-width: 20rem; width: 100%;">
+          <div class="swiper-wrapper">
+            
+            <div class="swiper-slide">
+
+            <div class="card btnregular" style="border: 2px solid #D99E32;">
+
+              <img src="img/cu.jpg" class="card-img-top img-fluid" alt="Promo 1">
+
+
+
+              <div class="card-body">
+
+                <h5 class="card-title" style="color: #D99E32;">Glúteo Max</h5>
+
+                <p class="card-text btnregular" style="color: #792E71;">
+
+                  O tratamento de glúteo max estimula,
+
+                  firma e modela os glúteos, melhorando o contorno e a aparência da pele.
+
+                  Realce suas curvas com resultados visíveis desde as primeiras sessões! <br>
+
+
+
+                  <span style="color: #530d55;">
+
+                    +2
+
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+
+                      class="bi bi-gift mb-1" viewBox="0 0 16 16">
+
+                      <path
+
+                        d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1v7.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 1 14.5V7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002 .274.045.43zM9 3h2.932l.023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zM1 4v2h6V4zm8 0v2h6V4zm5 3H9v8h4.5a.5.5 0 0 0 .5-.5zm-7 8V7H2v7.5a.5.5 0 0 0 .5 .5z" />
+
+                    </svg>
+
+                    Cortesia
+
+                  </span>
+
+
+
+                  <br>
+
+
+
+                  <span class="d-flex justify-content-center span"
+
+                    style="background-color: #530d55; color: white; padding: 2px 4px; border-radius: 5px; font-size: clamp(1rem, 3vw, 1.3rem);">
+
+                    10x R$ 189,00
+
+                  </span>
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Slide 2 -->
+
+          <div class="swiper-slide">
+
+            <div class="card btnregular" style="border: 2px solid #D99E32;">
+
+              <img src="img/pasld.jpg" class="card-img-top img-fluid" alt="Promo 2">
+
+
+
+              <div class="card-body">
+
+                <h5 class="card-title" style="color: #D99E32;">Remoção</h5>
+
+                <p class="card-text btnregular" style="color: #792E71;">
+
+                  A limpeza de pele é um tratamento que purifica, <br>
+
+                  renova e hidrata a pele, removendo impurezas e cravos.
+
+                  Perfeita para deixar seu rosto mais leve e radiante!
+
+
+
+                  <span class="d-flex justify-content-center span"
+
+                    style="background-color: #530d55; color: white; padding: 2px 4px; border-radius: 5px; font-size: clamp(1rem, 3vw, 1.3rem);">
+
+                    R$ 69,90
+
+                  </span>
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+          <!-- Slide 3 -->
+
+          <div class="swiper-slide">
+
+            <div class="card btnregular" style="border: 2px solid #D99E32;">
+
+              <img src="img/barriga.jpg" class="card-img-top img-fluid" alt="Promo 3">
+
+
+
+              <div class="card-body">
+
+                <h5 class="card-title" style="color: #D99E32;">Drenagem Linfática</h5>
+
+                <p class="card-text btnregular" style="color: #792E71;">
+
+                  O tratamento modela e firma o corpo,
+
+                  ajudando no contorno corporal e bem-estar. <br>
+
+
+
+                  <span class="d-flex justify-content-center span"
+
+                    style="background-color: #530d55; color: white; padding: 2px 4px; border-radius: 5px; font-size: clamp(1rem, 3vw, 1.3rem);">
+
+                    R$ 169,90
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  </section>
+
+  <br><br>
+
+  <section class="container-fluid d-flex align-items-center justify-content-center mt-5">
+    <div class="row w-100 align-items-center justify-content-center">
+      
+      <div class="col-12 col-md-6 col-sm-6 d-flex justify-content-center gap-4 order-md-1 order-2">
+        <div class="swiper videoSwiper" style="width: 18rem;">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="card btnregular" style="border: 2px solid #220440">
+                <div class="card-body p-0">
+                  <video src="img/video1.mp4" class="card-img-top" autoplay muted loop playsinline></video>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="card btnregular" style="border: 2px solid #220440">
+                <div class="card-body p-0">
+                  <video src="img/video2.mp4" class="card-img-top" autoplay muted loop playsinline></video>
+                </div>
+              </div>
+            </div>
+              <div class="swiper-slide">
+              <div class="card btnregular" style="border: 2px solid #220440">
+                <div class="card-body p-0">
+                  <video src="img/video3.mp4" class="card-img-top" autoplay muted loop playsinline></video>
+                </div>
+              </div>
+              </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-sm-6 d-flex flex-column align-items-center gap-4 order-md-2 order-1">
+        <div class="container-fluid">
+          <div class="d-flex gap-2 align-items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="55" fill="#220440">
+              <path d="M50 0 C52 15, 60 35, 85 50 C60 65, 52 85, 50 100 C48 85, 40 65, 15 50 C40 35, 48 15, 50 0Z" />
+            </svg>
+            <h2 class="fw-bold titlefont titlePromo"  style="font-size: 2.2em; color: #220440; padding: 5px !important;">
+              Construindo sua Autoestima  Através da Estética
+            </h2>
+          </div>
+          <br>
+          <p class="btnregular" style="font-size: 1.6rem; color: #792E71;">
+            Cuidamos de cada pessoa de forma única e acolhedora, entendendo suas necessidades.
+          </p>
+          <div class="d-flex justify-content-center">
+             <button type="button" id="btnsection">Agendar Agora!</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <br>
+
+  <section class="container py-5 text-center mt-5">
+    <h2 class="mb-4 titlefont" style="color: #530d55; font-size: 2.5rem;">O que nossos clientes dizem</h2>
+     <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="img/fedback1.jpg" alt="Avaliação 1" class="avaliacao-img rounded-3 shadow">
+        </div>
+        <div class="swiper-slide">
+          <img src="img/feback2.jpg" alt="Avaliação 2" class="avaliacao-img rounded-3 shadow">
+        </div>
+        <div class="swiper-slide">
+
+          <img src="img/fedback3.jpg" alt="Avaliação 3" class="avaliacao-img rounded-3 shadow">
+
+        </div>
+
+        <div class="swiper-slide">
+
+          <div class="card btnregular">
+
+            <img src="img/fedback4.jpg" alt="Avaliação 3" class="avaliacao-img rounded-3 shadow">
+
+      </div>
+    </div>
+  </section>
+
+  <section class="text-white d-flex align-items-center justify-content-center py-5" id="localizacao" style="background: url('img/fundofotter.jpg') center center / cover no-repeat; min-height: 100vh;">
+    <div class="container">
+      <div class="row align-items-center justify-content-between">
+        <div class="col-12 col-md-6 d-flex flex-column justify-content-center gap-4">
+          <div class="d-flex align-items-center gap-3">
+            <h1 class="fw-bold titlefont display-4">Onde Estamos:</h1>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="50" height="60" fill="none">
+              <path d="M50 0 C52 15, 60 35, 85 50 C60 65, 52 85, 50 100 C48 85, 40 65, 15 50 C40 35, 48 15, 50 0Z" fill="white" />
+            </svg>
+          </div>
+          <p class="fs-4 btnregular">
+            <strong id="LocalResponsive"> R. Botuporã, 203 - Itaquera </strong>
+          </p>
+        </div>
+        <div class="col-12 col-md-6 d-flex justify-content-center mt-4 mt-md-0">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.7196892346083!2d-46.4460264!3d-23.542582299999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce669903635a73%3A0x492c0e010908ce9f!2sR.%20Botupor%C3%A3%2C%20203%20-%20Itaquera%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2008215-470!5e0!3m2!1spt-BR!2sbr!4v1762030928181!5m2!1spt-BR!2sbr" class="w-100 rounded shadow" height="400" style="border: 0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="text-center py-5" id="paifotter">
+    <div class="container">
+      <div class="row d-flex justify-content-around align-items-center">
+        <ul class="col-12 col-md-auto d-flex gap-3 list-unstyled justify-content-center mb-3 mb-md-0 text-white">
+          <li>WhatsApp</li>
+          <li>Facebook</li>
+          <li>Instagram</li>
+        </ul>
+        <div class="col-12 col-md-auto d-flex justify-content-center mb-3 mb-md-0 " >
+          <p class="mb-0 titlefont foters"> ®Todos os Direitos Reservados</p>
+        </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script src="index.js"></script>
+</body>
+</html>

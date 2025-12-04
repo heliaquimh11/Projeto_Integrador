@@ -18,7 +18,7 @@
 
 <div style="max-width:700px; margin:80px auto; text-align:center;">
     <h2>Compra Confirmada</h2>
-    <p>Obrigado pela sua compra! Em breve você receberá um e-mail de confirmação (simulação).</p>
+    <p>Obrigado pela sua compra!.</p>
 
     <a href="index.php">
         <button style="padding:12px 18px; background:#000; color:#fff; border:none; border-radius:6px; margin-top:12px;">

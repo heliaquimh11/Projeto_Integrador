@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finalizar Compra </title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .checkout-box {
+            width: 600px;
+            margin: 140px auto;
+            padding: 30px;
+            border: 1px solid #ddd;
+        }
+
+        .checkout-box h2 {
+            margin-bottom: 20px;
+        }
+
+        .checkout-box input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #aaa;
+        }
+
+        .checkout-box button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 14px;
+            background: #000;
+            color: white;
+            border: none;
+        }
+    </style>
+
+</head>
+<body>
+<header>
+    <div class="logo">PRAY FOR MERCY</div>
+    <nav>
+        <a href="index.html">Início</a>
+        <a href="catalog.html">Catálogo</a>
+        <a href="login.html">Login</a>
+
+        <a href="carrinho.html" class="cart-icon">
+            <img src="https://cdn-icons-png.flaticon.com/512/263/263142.png" alt="Carrinho">
+            <span id="cart-count">0</span>
+        </a>
+    </nav>
+</header>
+
+
+<div class="checkout-box">
+    <h2>Finalizar Compra</h2>
+
+    <p><strong>Produto:</strong> Camiseta Essencial</p>
+    <p><strong>Preço:</strong> R$ 129,90</p>
+
+    <h3 style="margin-top:20px;">Dados do Cliente</h3>
+    <input type="text" placeholder="Nome Completo">
+    <input type="text" placeholder="Endereço">
+    <input type="text" placeholder="Cidade">
+    <input type="text" placeholder="CEP">
+
+    <h3 style="margin-top:20px;">Pagamento</h3>
+    <input type="text" placeholder="Número do Cartão">
+    <input type="text" placeholder="Validade">
+    <input type="text" placeholder="CVV">
+
+    <a href="confirmacao.html">
+        <button>Confirmar Compra</button>
+    </a>
+</div>
+
+<footer>
+    © 2025 Projeto 
+</footer>
+
+</body>
+</html>

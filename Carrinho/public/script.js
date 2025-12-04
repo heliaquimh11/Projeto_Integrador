@@ -10,19 +10,19 @@ window.bancoProdutos = {
   jersey: {
     id: "jersey",
     nome: "Jersey Barça - Unissex",
-    preco: "R$ 129.90",
+    preco: "R$"+129.90,
     frente: "../public/img/jersey- frente.webp" // opcional
   },
   hoodie: {
     id: "hoodie",
     nome: "Camiseta Bag - Unissex",
-    preco: "R$ 109.90",
+    preco: "R$"+109,
     frente: "../public/img/hoodie-frente.webp"
   },
   calca: {
     id: "calca",
     nome: "Calça Baggy TakeOff - Unissex",
-    preco: "R$ 199.90",
+    preco: "R$" +199.90,
     frente: "../public/img/calca-frente.webp"
   }
 };
@@ -35,7 +35,7 @@ function abrirProdutoId(id) {
   }
   localStorage.setItem(window.LS_PRODUTO_SELECIONADO, id);
   // caminho relativo: assume produto.php na mesma pasta de catalogo.php
-  window.location.href = "produto.php";
+  window.location.href = "../views/produto.php";
 }
 
 /* expor por compatibilidade (se ainda tiver onclick inline em algum lugar) */
@@ -59,7 +59,7 @@ function inicializarPaginaProduto() {
   const id = localStorage.getItem(window.LS_PRODUTO_SELECIONADO);
   if (!id || !window.bancoProdutos[id]) {
     console.warn("Produto não encontrado, voltando ao catálogo.");
-    window.location.href = "catalogo.php";
+    window.location.href = "../views/catalogo.php";
     return;
   }
 

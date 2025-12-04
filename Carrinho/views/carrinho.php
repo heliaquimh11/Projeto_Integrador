@@ -77,9 +77,9 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] != 1) {
 
 <!-- Finalizar compra -->
 <div style="text-align:center; margin-bottom:40px;">
-    <a href="compra.php">
-        <button id="finalizar" style="padding:12px 25px; cursor:pointer;">Finalizar Compra</button>
-    </a>
+   <form action="../views/finalizar.php" method="post">
+    <button type="submit">Comprar</button>
+</form>
 </div>
 <footer class="bg-black text-white text-center py-4 mt-5">
 

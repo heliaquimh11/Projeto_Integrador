@@ -3,7 +3,6 @@ ini_set('session.cookie_lifetime', 0);  // cookie expira ao fechar navegador
 ini_set('session.gc_maxlifetime', 1800); // 30 minutos opcional
 session_start();
 require_once '../core/conexao.php';
-session_start();
 ?>
 
 <!DOCTYPE html>

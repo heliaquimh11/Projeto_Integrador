@@ -1,0 +1,440 @@
+/* =========================================
+   1. VARIÁVEIS E GERAL
+   ========================================= */
+:root {
+    --color-primary: #530d55;     /* Roxo Médio */
+    --color-dark: #220440;        /* Roxo Escuro (Fundo Navbar/Footer) */
+    --color-card-bg: #792E71;     /* Roxo Card */
+    --color-gold: #D99E32;        /* Dourado */
+    --color-cream: #ede9dd;       /* Creme/Bege claro */
+    --color-white: #ffffff;
+}
+
+body {
+    font-family: "roca", sans-serif; /* Fonte padrão definida como roca (fallback) */
+    overflow-x: hidden; /* Evita rolagem lateral indesejada */
+}
+
+/* =========================================
+   2. TIPOGRAFIA (FONTES)
+   ========================================= */
+.titlefont {
+    font-family: "ivypresto-headline", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.linkfont {
+    font-family: "pf-marlet-display", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.4rem;
+}
+
+.btnregular, 
+.rocalignt {
+    font-family: "roca", sans-serif !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+}
+
+.rocalignt {
+    font-weight: 100 !important;
+}
+
+/* =========================================
+   3. NAVBAR E MENU
+   ========================================= */
+.navbar {
+    background-color: var(--color-dark);
+    border-radius: 2px;
+    transition: 0.3s;
+}
+
+.nav-link {
+    color: var(--color-white) !important;
+    padding: 0.4rem 1.5rem !important; /* Ajustado para não quebrar em telas médias */
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--color-gold) !important;
+}
+
+/* Botão "Agendar" dentro do Menu */
+#btnav {
+    padding: 5px 20px 3px !important; 
+}
+
+/* =========================================
+   4. BOTÕES (Estilização Unificada)
+   ========================================= */
+/* Classe base para todos os botões principais arredondados */
+.btn-agendar, #btnhome, #btnpromo, #btnsection {
+    border: none;
+    padding: 0.3rem 4.8rem;
+    border-radius: 2rem;
+    transition: 0.3s;
+    display: inline-block;
+    text-align: center;
+}
+
+/* Botão Popup (Modal) - Estilo único */
+#btnpopup{
+    border: none;
+    padding: 5px 5px !important;
+    max-width: 400px;
+    border-radius: 6.5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: var(--color-cream);
+    color: var(--color-primary);
+    transition: transform 1s ease;
+}
+#btnpopup:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    transform: scale(1.1);
+}
+
+/* Botão Home (Geral) */
+#btnhome {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+    font-weight: 800;
+}
+#btnhome:hover {
+    background-color: var(--color-cream);
+    color: var(--color-primary);
+}
+
+/* Botão Promoções */
+#btnpromo {
+    background-color: var(--color-white);
+    color: var(--color-primary);
+    font-weight: 800;
+}
+#btnpromo:hover {
+    background-color: var(--color-primary);
+    color: var(--color-cream);
+}
+
+/* Botão Section (Vídeos) */
+#btnsection {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    font-weight: 400; 
+}
+#btnsection:hover {
+    background-color: var(--color-cream);
+    color: var(--color-dark);
+}
+
+/* Botões pequenos dentro dos Carrosséis (Slides de Serviço) */
+.btn-small-card {
+    background-color: var(--color-white); 
+    color: var(--color-primary);
+    font-weight: 700;
+    border:none;
+    padding: 0.2rem 2.5rem; /* Botão menor */
+    border-radius: 1.5rem;
+    transition: all 0.3s;
+    font-size: 1.1rem;
+}
+
+.btn-small-card:hover {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+/* Botão Flutuante (WhatsApp) */
+.btn-flutuante {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: none;
+    z-index: 9999;
+    cursor: pointer;
+    padding: 0; 
+}
+
+.btn-flutuante img {
+    width: 60px; /* Levemente maior para melhor visibilidade */
+    height: auto;
+    border-radius: 100%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-flutuante:hover img {
+    transform: scale(1.2);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* =========================================
+   5. MODAL
+   ========================================= */
+.custom-modal-content {
+    background: none;
+    border: none;
+}
+
+.modal-bg-wrapper {
+    background: url('img/Design sem nome (4).png') no-repeat center center;
+    background-size: contain;
+    width: 100%;
+    max-width: 470px;
+    height: 480px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/* =========================================
+   6. SEÇÃO PROMOÇÕES (#promo)
+   ========================================= */
+#promo {
+    position: relative;
+    min-height: 120vh;
+    background: url('img/magicpattern-65O4Dw6-xLg-unsplash (1).jpg') no-repeat center center/cover;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+}
+
+/* Overlay Escuro */
+#promo::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+
+/* Garante que o conteúdo fique acima do overlay */
+#promo .container-fluid,
+#promo .row {
+    position: relative;
+    z-index: 2;
+}
+
+#promo .card {
+    width: 18rem;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Span de preço/destaque */
+.span {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 2px 4px;
+    border-radius: 5px;
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    transition: 0.3s;
+    display: inline-block; 
+}
+
+.span:hover {
+    background-color: var(--color-gold) !important;
+    transform: scale(1.1);
+    color: var(--color-dark);
+}
+
+/* =========================================
+   7. SEÇÃO MASSAGENS (#massagens) - CONSISTÊNCIA
+   ========================================= */
+
+/* Garante que todos os cards de serviço tenham a mesma largura e altura */
+.card-service {
+    width: 18rem; 
+    height: 28rem; 
+    overflow: hidden; 
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Garante que a imagem do card tenha altura fixa */
+.card-img-service {
+    height: 12rem; /* Altura fixa da imagem */
+    object-fit: cover; /* Recorta a imagem para preencher o espaço */
+}
+
+/* Fundo e cores do corpo do card de serviço */
+.card-body-service {
+    background-color: var(--color-card-bg); /* #792E71 */
+    color: var(--color-white);
+    height: calc(100% - 12rem); 
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Empurra o botão para baixo */
+}
+
+.card-body-service .card-text {
+    /* Limita o texto para evitar que cards com textos longos fiquem muito diferentes */
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Limita a 4 linhas */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    flex-grow: 1; /* Permite que o texto ocupe o espaço */
+}
+
+/* =========================================
+   8. OUTRAS SEÇÕES & ELEMENTOS
+   ========================================= */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Vídeos nos Cards */
+.card-body video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Imagens de Avaliação */
+.avaliacao-img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.avaliacao-img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================================
+   9. FOOTER
+   ========================================= */
+#paifotter {
+    background-color: var(--color-dark);
+    color: var(--color-white);
+}
+
+
+/* =========================================
+   10. RESPONSIVIDADE (MOBILE)
+   ========================================= */
+
+@media (max-width: 768px) {
+
+   #titlePromo{
+    padding: 2px !important;
+   }
+   .LocalResponsive{
+     font-size: 1.4rem !important;
+   }
+      .navbar {
+        background-size: contain !important; /* Ajusta sem cortar */
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+    }
+    /* Navbar mais compacta */
+    .nav-link {
+        padding: 0.4rem 1rem !important;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    /* Cards de serviços se ajustam à tela */
+    .card-service {
+        width: 100% !important;
+        height: auto !important;
+        max-width: 330px;
+        margin: 0 auto 2rem auto;
+    }
+
+    .card-img-service {
+        height: 180px !important;
+    }
+
+    .card-body-service {
+        height: auto !important;
+        padding-bottom: 1rem;
+    }
+  #foters{
+  font-size: 1rem !important;
+}
+    /* Botões menores no mobile */
+    #btnhome,
+    #btnpromo,
+    #btnsection,
+    .btn-small-card {
+        padding: 0.6rem 1.4rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* WHATSAPP flutuante reduz */
+    .btn-flutuante img {
+        width: 50px !important;
+    }
+
+    /* Modal ajustado */
+    .modal-bg-wrapper {
+        max-width: 90% !important;
+        height: 350px !important;
+        background-size: contain !important;
+    }
+
+    /* Ajuste do texto para não quebrar */
+    .titlefont {
+        font-size: 1.2rem;
+        text-align: center;
+    }
+
+    /* PROMO — evitar quebra de background */
+    #promo {
+        min-height: auto !important;
+        padding: 2rem 0 !important;
+        background-attachment: scroll !important;
+    }
+
+    #promo .card {
+        width: 100% !important;
+        max-width: 330px;
+        margin: 0 auto 2rem auto;
+    }
+
+    /* Swiper — ajustes */
+    .swiper-slide {
+        padding: 1rem 0 !important;
+    }
+
+    /* Imagens do swiper */
+    .avaliacao-img {
+        max-width: 320px !important;
+    }
+
+    /* Seções que estavam quebrando lateralmente */
+    .container,
+    .container-fluid,
+    .row {
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Botões grandes do hero */
+    #btnpopup {
+        width: 100% !important;
+        max-width: 300px;
+    }
+  }

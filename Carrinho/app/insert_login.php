@@ -1,14 +1,14 @@
 <?php
 require_once '../core/conexao.php';
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 session_set_cookie_params([
     'lifetime' => 0,
     'httponly' => true,
     'secure' => false
 ]);
-
-session_start();
-
 $nome  = $_POST['nome'] ?? '';
 $email = $_POST['email'] ?? '';
 $senha = $_POST['senha'] ?? '';

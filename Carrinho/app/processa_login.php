@@ -33,12 +33,16 @@ class verificar {
             // CÓDIGO TEMPORÁRIO PARA TESTE (SEM HASHING)
             if ($dados && $senha === $dados['senha']) { 
                 $_SESSION['logado']  = true;
+                 $_SESSION['id_cliente'] = $dados['id'];
                 $_SESSION['id']      = $dados['id'];
                 $_SESSION['email']   = $dados['email'];
 
                 // Redirecionamento (Assumindo que este caminho está correto)
                 header("Location: ../views/catalogo.php"); 
                 exit;
+                 if (isset($_SESSION['erro_login'])) {
+                 unset($_SESSION['erro_login']);
+                    }
             } else {
                 $_SESSION['erro_login'] = "Usuário ou senha inválidos!";
                
